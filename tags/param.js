@@ -1,4 +1,4 @@
-var tnd = require("./helpers/typeNameDescription");
+var tnd = require("bit-docs-type-annotate").typeNameDescription;
 
 	var ordered = function( params ) {
 		var arr = [];
@@ -26,46 +26,46 @@ var tnd = require("./helpers/typeNameDescription");
 			params.splice(indexOf(params, param.name),1, param);
 		} else {
 			// add to params
-			
+
 			params.push(param);
 		}
 	};
 	/**
 	 * @constructor documentjs.tags.param @param
 	 * @tag documentation
-	 * @parent documentjs.tags 
-	 * 
+	 * @parent documentjs.tags
+	 *
 	 * Adds parameter information to a [documentjs/tags/function @function] or
 	 * [documentjs/tags/signature @signature].
-	 * 
+	 *
 	 * @signature `@param {TYPE} NAME [DESCRIPTION]`
 	 * Example:
 	 * @codestart javascript
      * /**
      *  * Finds an order by id.
      *  * @@param {String} [id=0] Order identification number.
-     *  * @@param {function(Order)} [success(order)] Filter 
+     *  * @@param {function(Order)} [success(order)] Filter
      *  * order search by this date.
      *  *|
      *  findById: function( id, success ) {
 	 *  @codeend
-	 * 
-	 * Use `@param` within a [documentjs.tags.function @function] comment block or after 
-	 * a [documentjs.tags.signature @signature] tag. 
-	 * 
-	 * @param {documentjs.typeExpression} TYPE A [documentjs.typeExpression type expression]. 
-	 * 
+	 *
+	 * Use `@param` within a [documentjs.tags.function @function] comment block or after
+	 * a [documentjs.tags.signature @signature] tag.
+	 *
+	 * @param {documentjs.typeExpression} TYPE A [documentjs.typeExpression type expression].
+	 *
 	 * Use [documentjs.tags.option @option] to detail a function's arguments or an
 	 * object's properties.
-	 * 
-	 * @param {documentjs.nameExpression} NAME A [documentjs.nameExpression name expression]. 
-	 *  
+	 *
+	 * @param {documentjs.nameExpression} NAME A [documentjs.nameExpression name expression].
+	 *
 	 * @body
-	 * 
+	 *
 	 * ## @param within a function comment
-	 * 
+	 *
 	 * If using a comment preceeds a function like ...
-	 * 
+	 *
 	 * @codestart javascript
      * /**
      *  * Finds an order by id.
@@ -74,34 +74,34 @@ var tnd = require("./helpers/typeNameDescription");
      *  *|
      *  findById: function( id, success ) {
 	 *  @codeend
-	 * 
+	 *
 	 * ... DocumentJS will automatically
 	 * make the comment's [documentjs/DocObject DocObject] type a function
 	 * and create params with just names (in this case `id` and `success`).
-	 * 
+	 *
 	 * The comment's `@param`s tags should use the same names as the function. Any
 	 * params that specifies a name that isn't present is added at the end of
 	 * the arguments.
-	 * 
+	 *
 	 * ## @param within a signature
-	 * 
-	 * Use `@param` to specify the params in a signature. 
-	 * 
+	 *
+	 * Use `@param` to specify the params in a signature.
+	 *
 	 * @codestart javascript
      * /**
      *  * Finds an order by id.
-     *  * 
+     *  *
      *  * @signature `Order.findById(id=0,[success])`
-     *  * 
+     *  *
      *  * @@param {String} [id=0] Order identification number.
      *  * @@param {function(Order)} [success(order)] Filter order search by this date.
      *  *|
      * findById: function( id, success ) {
 	 * @codeend
-	 * 
-	 * When a `@signature` is used, any params automatically created from code 
+	 *
+	 * When a `@signature` is used, any params automatically created from code
 	 * are overwritten.
-	 * 
+	 *
 	 */
 	module.exports = {
 
@@ -109,7 +109,7 @@ var tnd = require("./helpers/typeNameDescription");
 			if ( last ) last.description += "\n" + line;
 		},
 		add: function( line, tagData ) {
-	
+
 			var param = tnd(line);
 			/* TODO no print statements
 			if(!param.type && !param.name){
@@ -124,18 +124,18 @@ var tnd = require("./helpers/typeNameDescription");
 					return param;
 				}
 			}
-			
-			
-			// if we have a signiture, add this param to the last 
+
+
+			// if we have a signiture, add this param to the last
 			// signiture
 			if(this.signatures){
 				this.signatures[this.signatures.length-1].params.push(param);
 			} else {
-				
+
 				var params = getFunctionParams(this);
 				// check types (created by typedef) for a function type
-				
-				
+
+
 				// params not found
 				if(!params){
 					// create a params directly on the current object
@@ -144,8 +144,8 @@ var tnd = require("./helpers/typeNameDescription");
 					}
 					params = this.params;
 				}
-				
-				
+
+
 				// we are the _body's_ param
 				// check if one by the same name hasn't already been created
 				addParam(param, params);
@@ -154,8 +154,8 @@ var tnd = require("./helpers/typeNameDescription");
 			return param;
 		},
 		done : function(){
-			
-			
+
+
 			// recursively look for description properties
 			var findDescriptions = function(obj){
 				for(var prop in obj){
@@ -171,7 +171,7 @@ var tnd = require("./helpers/typeNameDescription");
 				}
 			};
 			findDescriptions(this);
-			
+
 			delete this._curParam;
 		}
 	};

@@ -1,7 +1,4 @@
-var typer = require('./helpers/typer'),
-	tree = require('./helpers/tree'),
-	namer = require('./helpers/namer'),
-	tnd = require('./helpers/typeNameDescription');
+var tnd = require("bit-docs-type-annotate").typeNameDescription;
 
 	// go through the types and get the first one that has options
 	var getOptions = function(param){
@@ -25,7 +22,7 @@ var typer = require('./helpers/typer'),
 			}
 		}
 	};
-	
+
 	// find matching type
 	var getType = function(types, type){
 		for(var i =0; i < types.length; i++) {
@@ -47,68 +44,68 @@ var typer = require('./helpers/typer'),
 	},
 		setOptionData = function(option, data){
 			option.description = data.description;
-			
+
 			for(var prop in data){
 				option[prop] =  data[prop];
 			}
 		};
-	
+
 
 	/**
 	 * @constructor documentjs.tags.option @option
 	 * @tag documentation
-	 * @parent documentjs.tags 
-	 * 
+	 * @parent documentjs.tags
+	 *
 	 * Details the properties of an object or the arguments of a function
 	 * in a [documentjs.tags.param] tag.
-	 * 
+	 *
 	 * @signature `@option {TYPE} NAME [DESCRIPTION]`
-	 * 
+	 *
 	 * @codestart javascript
      * /**
      *  * Retrieves a list of orders.
-     *  * 
+     *  *
      *  * @@param {{}} params A parameter object with the following options:
      *  * @@option {String} type Specifies the type of order.
-     *  * @@option {Number} [createdAt] Retrieves all orders after this 
-     *  * timestamp. 
+     *  * @@option {Number} [createdAt] Retrieves all orders after this
+     *  * timestamp.
      *  *
-     *  * @@param {function(Orders.List)} [success(orders)] Filter order search 
+     *  * @@param {function(Orders.List)} [success(orders)] Filter order search
      *  * by this date.
      *  * @@option orders A list of [Orders] that match `params`.
      *  *|
      *  find: function( params, success ) {
 	 *  @codeend
-	 * 
-	 * 
+	 *
+	 *
 	 * @param {documentjs.typeExpression} [TYPE] A [documentjs.typeExpression type expression]. Examples:
-	 * 
-	 * `{String}` - type is a `String`.  
-	 * `{function(name)}` - type is a `function` that takes one `name` argument.  
-	 * 
+	 *
+	 * `{String}` - type is a `String`.
+	 * `{function(name)}` - type is a `function` that takes one `name` argument.
+	 *
 	 * `TYPE` does not need to be specified for types that are already described in
 	 * the option's corresponding function or object.  For example:
-	 * 
-	 * 
+	 *
+	 *
 	 * @codestart
      * /**
-     *  * @@param {{type: String}} params A parameter object 
+     *  * @@param {{type: String}} params A parameter object
      *  * with the following options:
      *  * @@option type Specifies the type of order.
      *  *
-     *  * @@param {function(Orders.List)} [success(orders)] Callback 
+     *  * @@param {function(Orders.List)} [success(orders)] Callback
      *  * function.
      *  * @@option orders A list of [Orders] that match `params`.
      *  *|
 	 * @codeend
 	 * @param {documentjs.nameExpression} NAME A [documentjs.nameExpression name expression]. Examples:
-	 * 
-	 * `age` - age is item.  
-	 * `[age]` - age is item, age is optional.  
-	 * `[age=0]` - age defaults to 0.  
-	 * 
+	 *
+	 * `age` - age is item.
+	 * `[age]` - age is item, age is optional.
+	 * `[age=0]` - age defaults to 0.
+	 *
 	 * @param {Markdown} [DESCRIPTION] Markdown content that continues for multiple lines.
-	 * 
+	 *
 	 */
 	module.exports = {
 
@@ -116,21 +113,21 @@ var typer = require('./helpers/typer'),
 			if ( last ) last.description += "\n" + line;
 		},
 		add: function( line, tagData ) {
-			
+
 			var noNameData = tnd(line, true),
 				data = tnd(line);
-			
+
 			if(tagData && this !== tagData) {
 				var options = getOptions(tagData);
-				
+
 				if(options) {
 					var option = getOrMakeOptionByName(options, data.name);
 					setOptionData(option, data);
 					return option;
 				}
 			}
-			
-			
+
+
 			// start processing
 			if(this.type == "typedef" || this.type === "module"){
 				// Typedef's can have option values, but those values can be objects
@@ -147,8 +144,8 @@ var typer = require('./helpers/typer'),
 					}
 				}
 			}
-			
-			
+
+
 			// we should look to find something matching
 			var locations = [this._curReturn, this._curParam, (this.params && this.params[this.params.length - 1]), this];
 			// only process this type of option if there is one value
@@ -169,21 +166,21 @@ var typer = require('./helpers/typer'),
 								type[prop] = typeData[prop];
 							}
 							return type;
-						} 
+						}
 					}
 				}
 			}
-			
+
 			var prevParam = this._curReturn || this._curParam || (this.params && this.params[this.params.length - 1]) || this;
 
 			if(!data.name){
 				console.log("LINE: \n" + line + "\n does not match @option [{TYPE}] NAME DESCRIPTION");
 			}
-			
+
 			// try to get a params or options object
 			var params = getParams(prevParam),
 				options = getOptions(prevParam);
-			
+
 			if(!options && !params){
 				if(prevParam.types[0]) {
 					options = (prevParam.types[0].options = []);
@@ -192,9 +189,9 @@ var typer = require('./helpers/typer'),
 					return;
 				}
 			}
-			// get the named one 
+			// get the named one
 			var option = getOrMakeOptionByName(options || params, data.name);
-			
+
 			// add to it
 			setOptionData(option, data);
 

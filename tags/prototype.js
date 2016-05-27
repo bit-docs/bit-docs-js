@@ -1,17 +1,17 @@
-var getParent = require('./helpers/getParent'),
-	tnd = require('./helpers/typeNameDescription');
+var getParent = require("bit-docs-process-tags/get-parent"),
+	tnd = require("bit-docs-type-annotate").typeNameDescription;
 
 	/**
 	 * @constructor documentjs.tags.prototype @prototype
 	 * @parent documentjs.tags
-	 * 
+	 *
 	 * Declares that [documentjs.tags.property] and
 	 * [documentjs.tags.function] tags belong
 	 * to the preceeding [documentjs.tags.function]'s
 	 * prototype object.
-	 * 
+	 *
 	 * @signature `@prototype`
-	 * 
+	 *
 	 * @codestart javascript
 	 * /**
 	 *  * @@function
@@ -26,13 +26,13 @@ var getParent = require('./helpers/getParent'),
      *     eat: function(animal){ ... }
      * }
 	 * @codeend
-	 * 
+	 *
 	 */
 	module.exports = {
 		add: function(line, curData, scope, docMap){
-			
+
 			if(scope){
-				
+
 				var parentAndName = getParent.andName({
 					parents: ["constructor","function","module","add"],
 					useName: ["constructor","function","module","add"],
@@ -54,8 +54,8 @@ var getParent = require('./helpers/getParent'),
 					this.parent= parentAndName.parent;
 					return ['scope',this];
 				}
-				
+
 			}
-			
+
 		}
 	};

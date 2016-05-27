@@ -1,4 +1,4 @@
-var typer = require('./helpers/typer');
+var typer = require('bit-docs-type-annotate/lib/typer');
 
 var addReturnToTypes = function(tagData, returns){
 	if(tagData && tagData.types){
@@ -14,52 +14,52 @@ var addReturnToTypes = function(tagData, returns){
 	/**
 	 * @constructor documentjs.tags.return @return
 	 * @parent documentjs.tags
-	 * 
+	 *
 	 * Describes a function's return value.
-	 * 
+	 *
 	 * @signature `@return {TYPE} DESCRIPTION`
-	 * 
+	 *
 	 * @codestart javascript
 	 * /**
 	 *  * Capitalizes a string
 	 *  * @@param {String} s the string to be lowercased.
-	 *  * @@return {String} a string with the first character capitalized, 
+	 *  * @@return {String} a string with the first character capitalized,
 	 *  * and everything else lowercased
 	 *  *|
 	 * capitalize: function( s ) { ... }
 	 * @codeend
-	 * 
-	 * @param {documentjs.typeExpression} [TYPE] The type of 
+	 *
+	 * @param {documentjs.typeExpression} [TYPE] The type of
 	 * return value.
-	 * 
-	 * @param {String} [DESCRIPTION] The description of the 
+	 *
+	 * @param {String} [DESCRIPTION] The description of the
 	 * return value.
 	 */
 module.exports = {
 	add: function( line, tagData ) {
-		
+
 		var printError = function(){
 			console.warn("LINE: \n" + line + "\n does not match @return {TYPE} DESCRIPTION");
 		};
-		
+
 		// start processing
 		var children = typer.tree(line);
-		
+
 		// check the format
 		if(!children.length >= 2 || !children[1] || !children[1].children) {
 			printError();
 			return;
 		}
-		
+
 		var returns = typer.process(children[1].children, {});
 		returns.description = line.substr(children[1].end).replace(/^\s+/,"");
-		
+
 		var parts = line.match(/\s*@\w+\s+(?:\{([^\}]+)\})?\s*(.*)?/);
 
 		if (!parts ) {
 			return;
 		}
-		
+
 		// check tagData first
 		var rets = tagData !== this && addReturnToTypes(tagData, returns);
 		if(rets) {
@@ -73,9 +73,9 @@ module.exports = {
 				this._curReturn = returns;
 				return rets;
 			}
-			
+
 			this.returns = returns;
-		} 
+		}
 
 		this._curReturn = returns;
 
@@ -85,6 +85,6 @@ module.exports = {
 		ret.description += "\n" + line;
 	},
 	done : function(){
-		delete this._curReturn;	
+		delete this._curReturn;
 	}
 };

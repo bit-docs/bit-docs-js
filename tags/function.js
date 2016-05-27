@@ -1,48 +1,48 @@
-var getParent = require('./helpers/getParent'),
-	tnd = require('./helpers/typeNameDescription'),
-	
+var getParent = require("bit-docs-process-tags/get-parent"),
+	tnd = require("bit-docs-type-annotate").typeNameDescription;
+
 	//(~)? is just a stupid way of making sure there are the right number of parts
-	
+
 	// key: function() or key= function(){}
 	keyFunction = /(?:([\w\.\$]+)|(["'][^"']+["']))\s*[:=].*function\s?\(([^\)]*)/,
 	namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
 
-	
-	
-	var updateNameWithScope = require("./helpers/updateNameAndParentWithScope");
+
+
+	var updateNameWithScope = require("../lib/updateNameAndParentWithScope");
 
 	/**
 	 * @constructor documentjs.tags.function @function
-	 * 
+	 *
 	 * @parent documentjs.tags
-	 * 
+	 *
 	 * @description Specifies the comment is for a function. Use [documentjs.tags.param @param] to
 	 * specify the arguments of a function.
-	 * 
+	 *
 	 * @signature `@function [NAME] [TITLE]`
-	 * 
+	 *
 	 * @codestart javascript
 	 * /**
 	 *  * @function lib.Component.prototype.update update
 	 *  * @parent lib.Component
 	 *  *|
 	 * C.p.update = function(){
-	 * 	 
+	 *
 	 * }
 	 * @codeend
-	 * 
-	 * @param {String} [NAME] The name of the function. It should 
+	 *
+	 * @param {String} [NAME] The name of the function. It should
 	 * be supplied if it can not be determined from the code block
 	 * following the comment.
-	 * 
+	 *
 	 * @param {String} [TITLE] The title to be used for display purposes.
-	 * 
+	 *
 	 * @body
-	 * 
+	 *
 	 * ## Code Matching
-	 * 
+	 *
 	 * The `@function` type can be infered from code like the following:
-	 * 
+	 *
 	 * @codestart javascript
 	 * /**
 	 *  * The foo function exists
@@ -57,9 +57,9 @@ var getParent = require('./helpers/getParent'),
 	module.exports = {
 		codeMatch: /function(\s+[\w\.\$]+)?\s*\([^\)]*\)/,
 		code: function( code, scope, docMap ) {
-			
+
 			var parts = code.match(keyFunction);
-			
+
 			if (!parts ) {
 				parts = code.match(namedFunction);
 			}
@@ -85,9 +85,9 @@ var getParent = require('./helpers/getParent'),
 						types: [{type: "*"}]
 					});
 				}
-			
+
 			}
-			
+
 			// assign name and parent
 			if(scope && docMap){
 				var parentAndName = getParent.andName({
@@ -101,7 +101,7 @@ var getParent = require('./helpers/getParent'),
 				data.parent = parentAndName.parent;
 				data.name = parentAndName.name;
 			}
-			
+
 			return data;
 		},
 		add: function(line, curData, scope, docMap){
@@ -118,4 +118,3 @@ var getParent = require('./helpers/getParent'),
 			}
 		}
 	};
-

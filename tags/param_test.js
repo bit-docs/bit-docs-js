@@ -1,20 +1,20 @@
 var param = require("./param"),
 	assert = require("assert");
-	
-	
-describe("documentjs/lib/tags/params", function(){
-	
+
+
+describe("bit-docs-js/tags/params", function(){
+
 	it("@params - basic", function(){
-		
+
 		var obj = {}
 		param.add.call(obj,"@param {boolean} name")
 		assert.equal(obj.params[0].types[0].type,"boolean")
 		assert.equal(obj.params[0].name,"name")
-		
+
 	});
-	
+
 	it("@params - function",function(){
-		
+
 		var obj = {}
 		param.add.call(obj,"@param {function(jQuery.Event,*...)} handler(event,args) a description");
 
@@ -34,12 +34,12 @@ describe("documentjs/lib/tags/params", function(){
 			}]
 		});
 	});
-	
+
 	it("@params - object",function(){
-		
+
 		var obj = {}
 		param.add.call(obj,"@param {{name: String, foo}=} thing a description");
-		
+
 		assert.deepEqual(obj.params[0],
 		{
 			name: "thing",
@@ -52,8 +52,8 @@ describe("documentjs/lib/tags/params", function(){
 				]
 			}]
 		});
-			
+
 	});
-	
-	
+
+
 });

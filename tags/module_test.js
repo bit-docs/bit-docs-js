@@ -3,34 +3,34 @@ var mod = require('./module'),
 	option = require("./option"),
 	returns = require("./return"),
 	assert = require("assert");
-	
-	
-describe("documentjs/lib/tags/module", function(){
-	
+
+
+describe("bit-docs-js/tags/module", function(){
+
 	it("basic",function(){
-		
+
 		var obj = {};
 		var docMap = {Foo: {name: "Foo", type: "constructor"}}
 		mod.add.call(obj,"@module {{}} name title",null,docMap.Foo, docMap );
-		
+
 		assert.deepEqual(obj,{
 			name: "name",
 			title: "title",
 			type: "module",
 			types: [{type: "Object", options: []}]
 		})
-		
+
 	})
-	
-	
+
+
 	it("function module followed by params",function(){
-		
+
 		var obj = {};
 		var docMap = {Foo: {name: "Foo", type: "constructor"}}
 		mod.add.call(obj,"@module {function(String):Number} func(name) functionjunction",null,docMap.Foo, docMap );
 		param.add.call(obj,"@param {String} name DESCRIPTION",null,docMap.Foo, docMap );
 		returns.add.call(obj,"@return {Number} RET DESCRIPTION",null,docMap.Foo, docMap );
-		
+
 		delete obj._curParam;
 		delete obj._curReturn;
 		assert.deepEqual(obj,{
@@ -38,7 +38,7 @@ describe("documentjs/lib/tags/module", function(){
 			title: "functionjunction",
 			type: "module",
 			types: [{
-				type: "function", 
+				type: "function",
 				constructs: undefined,
 				context: undefined,
 				params:[{
@@ -54,15 +54,15 @@ describe("documentjs/lib/tags/module", function(){
 		        	description: "RET DESCRIPTION",
 		        	types: [
 		        		{
-		        			
+
 		        			type: "Number"
-		        			
+
 		        		}
 		        	]
 		        }
 			}]
 		});
-		
+
 	});
 
 	it("@option on a module with a template", function(){
@@ -88,7 +88,7 @@ describe("documentjs/lib/tags/module", function(){
 				}]
 			}]
 		});
-		
-		
+
+
 	});
 });

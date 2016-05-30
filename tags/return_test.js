@@ -1,7 +1,7 @@
 var ret = require("./return"),
 	assert = require("assert");
 
-describe("documentjs/lib/tags/return",function(){
+describe("bit-docs-js/tags/return",function(){
 
 	it("@return",function(){
 		var obj = {}

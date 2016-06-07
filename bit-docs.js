@@ -1,5 +1,7 @@
 var tags = require("./tags/tags");
 var processJavaScript = require("./process/javascript");
+var path = require("path");
+
 module.exports = function(bitDocs){
     // register your tags
     bitDocs.register("tags", tags);
@@ -11,7 +13,7 @@ module.exports = function(bitDocs){
 
     bitDocs.register("html", {
         dependencies: dependencies,
-        templates: __dirname+"/templates"
+        templates: path.join(__dirname, "templates")
     });
 
-});
+};

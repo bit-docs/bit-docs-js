@@ -39,6 +39,8 @@ module.exports = function(filename, source, docMap, siteConfig, addDocObjectToDo
         		}
             });
         });
+        // prevents trying to process .js as something else
+        return true;
     }
 
 }

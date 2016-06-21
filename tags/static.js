@@ -45,12 +45,14 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 					return ['add',{
 						type: "static",
 						name: parentAndName.name,
-						parent: parentAndName.parent
+						parent: parentAndName.parent,
+						title: "static"
 					}];
 				} else {
 					this.type= "static";
 					this.name= parentAndName.name;
 					this.parent= parentAndName.parent;
+					this.title = "static";
 					return ['scope',this];
 				}
 			}

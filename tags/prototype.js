@@ -39,19 +39,21 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 					scope: scope,
 					docMap: docMap,
 					name: "prototype",
-					title: "static"
+					title: "prototype"
 				});
 				// if people are putting @prototype on something that already has a name
 				if(this.name && docMap[this.name]) {
 					return ['add',{
 						type: "prototype",
 						name: parentAndName.name,
-						parent: parentAndName.parent
+						parent: parentAndName.parent,
+						title: "prototype"
 					}];
 				} else {
 					this.type= "prototype";
 					this.name= parentAndName.name;
 					this.parent= parentAndName.parent;
+					this.title = "prototype";
 					return ['scope',this];
 				}
 

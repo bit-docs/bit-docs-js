@@ -13,7 +13,8 @@ var tags = {
 	signature: require("./signature"),
 	"static": require("./static"),
 	"this": require("./this"),
-	typedef: require("./typedef")
+	type: require("./type"),
+    typedef: require("./typedef")
 };
 
 for(var name in tags) {

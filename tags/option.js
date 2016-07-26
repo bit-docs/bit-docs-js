@@ -115,13 +115,16 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 		add: function( line, tagData ) {
 
 			var noNameData = tnd(line, true),
-				data = tnd(line);
+				data = tnd(line),
+				i,
+				option,
+				obj;
 
 			if(tagData && this !== tagData) {
 				var options = getOptions(tagData);
 
 				if(options) {
-					var option = getOrMakeOptionByName(options, data.name);
+					option = getOrMakeOptionByName(options, data.name);
 					setOptionData(option, data);
 					return option;
 				}
@@ -133,10 +136,10 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 				// Typedef's can have option values, but those values can be objects
 				// with options.
 				// So, we should check in options objects first
-				for( var i = 0 ; i < this.types.length; i++ ) {
-					var obj = this.types[i];
+				for( i = 0 ; i < this.types.length; i++ ) {
+					obj = this.types[i];
 					if( obj.type == "Object" ) {
-						var option = getOrMakeOptionByName(obj.options || [], data.name);
+						option = getOrMakeOptionByName(obj.options || [], data.name);
 						if(option) {
 							setOptionData(option, data);
 							return option;
@@ -151,8 +154,8 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 			// only process this type of option if there is one value
 			if(noNameData.types && noNameData.types.length == 1) {
 				var typeData = noNameData.types[0];
-				for(var i = 0 ; i < locations.length; i++){
-					var obj = locations[i];
+				for(i = 0 ; i < locations.length; i++){
+					obj = locations[i];
 					if(obj){
 						if(!obj.types){
 							obj.types = [];
@@ -190,7 +193,7 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 				}
 			}
 			// get the named one
-			var option = getOrMakeOptionByName(options || params, data.name);
+			option = getOrMakeOptionByName(options || params, data.name);
 
 			// add to it
 			setOptionData(option, data);

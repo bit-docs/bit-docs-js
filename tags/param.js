@@ -31,12 +31,11 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 		}
 	};
 	/**
-	 * @constructor documentjs.tags.param @param
-	 * @tag documentation
-	 * @parent documentjs.tags
+	 * @module {Object} bit-docs-js/tags/param @param
+	 * @parent bit-docs-js/tags
 	 *
-	 * Adds parameter information to a [documentjs/tags/function @function] or
-	 * [documentjs/tags/signature @signature].
+	 * Adds parameter information to a [bit-docs-js/tags/function @function] or
+	 * [bit-docs-js/tags/signature @signature].
 	 *
 	 * @signature `@param {TYPE} NAME [DESCRIPTION]`
 	 * Example:
@@ -50,15 +49,15 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
      *  findById: function( id, success ) {
 	 *  @codeend
 	 *
-	 * Use `@param` within a [documentjs.tags.function @function] comment block or after
-	 * a [documentjs.tags.signature @signature] tag.
+	 * Use `@param` within a [bit-docs-js/tags/function @function] comment block or after
+	 * a [bit-docs-js/tags/signature @signature] tag.
 	 *
-	 * @param {documentjs.typeExpression} TYPE A [documentjs.typeExpression type expression].
+	 * @param {bit-docs-js/typeExpression} TYPE A [bit-docs-js/typeExpression type expression].
 	 *
-	 * Use [documentjs.tags.option @option] to detail a function's arguments or an
+	 * Use [bit-docs-js/tags/option @option] to detail a function's arguments or an
 	 * object's properties.
 	 *
-	 * @param {documentjs.nameExpression} NAME A [documentjs.nameExpression name expression].
+	 * @param {bit-docs-js/nameExpression} NAME A [bit-docs-js/nameExpression name expression].
 	 *
 	 * @body
 	 *
@@ -75,8 +74,8 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
      *  findById: function( id, success ) {
 	 *  @codeend
 	 *
-	 * ... DocumentJS will automatically
-	 * make the comment's [documentjs/DocObject DocObject] type a function
+	 * ... bit-docs will automatically
+	 * make the comment's [bit-docs-js/DocObject DocObject] type a function
 	 * and create params with just names (in this case `id` and `success`).
 	 *
 	 * The comment's `@param`s tags should use the same names as the function. Any

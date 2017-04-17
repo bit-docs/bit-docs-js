@@ -1,8 +1,8 @@
 	/**
-	 * @constructor documentjs.tags.signature @signature
-	 * @parent documentjs.tags
+	 * @module {Object} bit-docs-js/tags/signature @signature
+	 * @parent bit-docs-js/tags
 	 * 
-	 * Specifies a signature for a [documentjs/tags/function @function]
+	 * Specifies a signature for a [bit-docs-js/tags/function @function]
 	 * but can work with any other tag.
 	 * 
 	 * @signature '@signature `SIGNATURE` DESCRIPTION'

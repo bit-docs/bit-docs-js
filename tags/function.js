@@ -12,11 +12,11 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 	var updateNameWithScope = require("../lib/updateNameAndParentWithScope");
 
 	/**
-	 * @constructor documentjs.tags.function @function
+	 * @module {Object} bit-docs-js/tags/function @function
 	 *
-	 * @parent documentjs.tags
+	 * @parent bit-docs-js/tags
 	 *
-	 * @description Specifies the comment is for a function. Use [documentjs.tags.param @param] to
+	 * @description Specifies the comment is for a function. Use [bit-docs-js/tags/param @param] to
 	 * specify the arguments of a function.
 	 *
 	 * @signature `@function [NAME] [TITLE]`

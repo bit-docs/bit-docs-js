@@ -5,12 +5,18 @@ var path = require("path");
 /**
  * @module {function} bit-docs-js
  * @parent plugins
+ * @group bit-docs-js/tags
  *
  * @description A collection of tags, templates, and basic styles for JavaScript applications.
  *
+ * @param {Object} [bitDocs] The configuration object passed by `bit-docs` at runtime. 
+ * 
  * @body
  *
- * TBD
+ * This plugin registers onto these hooks:
+ *   - tags
+ *   - processor
+ *   - html
  */
 module.exports = function(bitDocs){
     // register your tags

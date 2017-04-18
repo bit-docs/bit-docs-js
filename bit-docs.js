@@ -22,13 +22,18 @@ var path = require("path");
  *   - [bit-docs-js/tags/function @function]
  *   - [bit-docs-js/tags/param @param]
  *   - [bit-docs-js/tags/signature @signature] (has mustache template)
+ *   - ...
  * 
  * Registering the `processor` hook adds a processor for `*.js` files that gets
- * code comments in JavaScript files and processes them, parsing tags like
- * `@function` and `@param` into docObjects added to the docMap.
+ * code comments in JavaScript, and processes tags like `@function` and `@param`
+ * into docObjects that are subsequently added to the docMap. The processor is
+ * also smart enough process regular comments above functions that have not
+ * explicitly been documented with closure type annotations to extract basic
+ * signature information such as parameters and return type.
  * 
- * Registering the `html` hook adds mustache templates used for generating the
- * HTML related to those tags added by this plugin.
+ * Registering the `html` hook adds mustache templates used for generation of
+ * HTML related to those tags added by this plugin. Currently it's one big
+ * template used to nicely format all the tag information.
  */
 module.exports = function(bitDocs){
     // register your tags

@@ -41,12 +41,7 @@ module.exports = function(bitDocs){
     bitDocs.register("tags", tags);
     bitDocs.register("processor", processJavaScript);
 
-    var dependencies = {},
-        pack = require("./package.json");
-    dependencies[pack.name] = pack.version;
-
     bitDocs.register("html", {
-        dependencies: dependencies,
         templates: path.join(__dirname, "templates")
     });
 

@@ -1,119 +1,119 @@
-var getParent = require("bit-docs-process-tags/get-parent"),
-	tnd = require("bit-docs-type-annotate").typeNameDescription;
+var updateNameWithScope = require("../lib/updateNameAndParentWithScope");
+var getParent = require("bit-docs-process-tags/get-parent");
+var tnd = require("bit-docs-type-annotate").typeNameDescription;
 
-	//(~)? is just a stupid way of making sure there are the right number of parts
+// key: function() or key= function(){}
+//(~)? is just a stupid way of making sure there are the right number of parts
+keyFunction = /(?:([\w\.\$]+)|(["'][^"']+["']))\s*[:=].*function\s?\(([^\)]*)/;
+namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
 
-	// key: function() or key= function(){}
-	keyFunction = /(?:([\w\.\$]+)|(["'][^"']+["']))\s*[:=].*function\s?\(([^\)]*)/,
-	namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
+/**
+ * @module {Object} bit-docs-js/tags/function @function
+ * @parent bit-docs-js/tags
+ *
+ * @description Specifies the comment is for a function. Use 
+ * [bit-docs-js/tags/param] to specify the parameters of a function.
+ *
+ * @signature `@function [NAME] [TITLE]`
+ *
+ * @codestart javascript
+ * /**
+ *  * @function lib.Component.prototype.update update
+ *  * @parent lib.Component
+ *  *|
+ * C.p.update = function(){
+ *
+ * }
+ * @codeend
+ *
+ * @param {String} [NAME] The name of the function. It should be supplied
+ * if it cannot be determined from the code block following the comment.
+ *
+ * @param {String} [TITLE] The title to be used for display purposes.
+ *
+ * @body
+ *
+ * ## Code Matching
+ *
+ * The `@function` type can be inferred from code like the following:
+ *
+ * @codestart javascript
+ * /**
+ *  * The foo function exists
+ *  *|
+ * foo: function(){}
+ * 
+ * /**
+ *  * The bar function exists
+ *  *|
+ * bar = function(){}
+ * @codeend
+ */
+module.exports = {
+	codeMatch: /function(\s+[\w\.\$]+)?\s*\([^\)]*\)/,
+	code: function (code, scope, docMap) {
+		var parts = code.match(keyFunction);
 
+		if (!parts) {
+			parts = code.match(namedFunction);
+		}
 
+		var data = {
+			type: "function"
+		};
 
-	var updateNameWithScope = require("../lib/updateNameAndParentWithScope");
+		if (!parts) {
+			return;
+		}
 
-	/**
-	 * @module {Object} bit-docs-js/tags/function @function
-	 * @parent bit-docs-js/tags
-	 *
-	 * @description Specifies the comment is for a function. Use 
-	 * [bit-docs-js/tags/param] to specify the parameters of a function.
-	 *
-	 * @signature `@function [NAME] [TITLE]`
-	 *
-	 * @codestart javascript
-	 * /**
-	 *  * @function lib.Component.prototype.update update
-	 *  * @parent lib.Component
-	 *  *|
-	 * C.p.update = function(){
-	 *
-	 * }
-	 * @codeend
-	 *
-	 * @param {String} [NAME] The name of the function. It should be supplied
-	 * if it cannot be determined from the code block following the comment.
-	 *
-	 * @param {String} [TITLE] The title to be used for display purposes.
-	 *
-	 * @body
-	 *
-	 * ## Code Matching
-	 *
-	 * The `@function` type can be inferred from code like the following:
-	 *
-	 * @codestart javascript
-	 * /**
-	 *  * The foo function exists
-	 *  *|
-	 * foo: function(){}
-	 * 
-	 * /**
-	 *  * The bar function exists
-	 *  *|
-	 * bar = function(){}
-	 * @codeend
-	 */
-	module.exports = {
-		codeMatch: /function(\s+[\w\.\$]+)?\s*\([^\)]*\)/,
-		code: function( code, scope, docMap ) {
+		data.name = parts[1] ? parts[1].replace(/^this\./, "")
+			.replace(/^exports\./, "")
+			.replace(/^\$./, "jQuery.") : parts[2];
 
-			var parts = code.match(keyFunction);
+		data.params = [];
+		var params = parts[3].match(/\w+/g);
 
-			if (!parts ) {
-				parts = code.match(namedFunction);
-			}
-			var data = {
-				type: "function"
-			};
-			if (!parts ) {
-				return;
-			}
-			data.name = parts[1] ? parts[1].replace(/^this\./, "")
-				.replace(/^exports\./, "")
-				.replace(/^\$./, "jQuery.") : parts[2];
-
-
-			data.params = [];
-			var params = parts[3].match(/\w+/g);
-
-			if ( params ) {
-
-				for ( var i = 0; i < params.length; i++ ) {
-					data.params.push({
-						name: params[i],
-						types: [{type: "*"}]
-					});
-				}
-
-			}
-
-			// assign name and parent
-			if(scope && docMap){
-				var parentAndName = getParent.andName({
-					parents: "*",
-					useName: ["constructor","static","prototype","add","module"],
-					scope: scope,
-					docMap: docMap,
-					name: data.name
+		if (params) {
+			for (var i = 0; i < params.length; i++) {
+				data.params.push({
+					name: params[i],
+					types: [{ type: "*" }]
 				});
-
-				data.parent = parentAndName.parent;
-				data.name = parentAndName.name;
-			}
-
-			return data;
-		},
-		add: function(line, curData, scope, docMap){
-			var data = tnd(line);
-			this.title = data.description;
-			if(data.name) {
-				this.name = data.name;
-			}
-			updateNameWithScope(this, scope, docMap);
-			if(this.name)
-			this.type = "function";
-			if(!data.params){
-				data.params = [];
 			}
 		}
-	};
+
+		// assign name and parent
+		if (scope && docMap) {
+			var parentAndName = getParent.andName({
+				parents: "*",
+				useName: ["constructor", "static", "prototype", "add", "module"],
+				scope: scope,
+				docMap: docMap,
+				name: data.name
+			});
+
+			data.parent = parentAndName.parent;
+			data.name = parentAndName.name;
+		}
+
+		return data;
+	},
+	add: function (line, curData, scope, docMap) {
+		var data = tnd(line);
+		this.title = data.description;
+
+		if (data.name) {
+			this.name = data.name;
+		}
+
+		updateNameWithScope(this, scope, docMap);
+
+		if (this.name) {
+			this.type = "function";
+		}
+
+		if (!data.params) {
+			data.params = [];
+		}
+	}
+};

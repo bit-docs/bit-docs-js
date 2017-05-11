@@ -13,11 +13,10 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 
 	/**
 	 * @module {Object} bit-docs-js/tags/function @function
-	 *
 	 * @parent bit-docs-js/tags
 	 *
-	 * @description Specifies the comment is for a function. Use [bit-docs-js/tags/param @param] to
-	 * specify the arguments of a function.
+	 * @description Specifies the comment is for a function. Use 
+	 * [bit-docs-js/tags/param] to specify the parameters of a function.
 	 *
 	 * @signature `@function [NAME] [TITLE]`
 	 *
@@ -31,9 +30,8 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 	 * }
 	 * @codeend
 	 *
-	 * @param {String} [NAME] The name of the function. It should
-	 * be supplied if it can not be determined from the code block
-	 * following the comment.
+	 * @param {String} [NAME] The name of the function. It should be supplied
+	 * if it cannot be determined from the code block following the comment.
 	 *
 	 * @param {String} [TITLE] The title to be used for display purposes.
 	 *
@@ -41,13 +39,14 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 	 *
 	 * ## Code Matching
 	 *
-	 * The `@function` type can be infered from code like the following:
+	 * The `@function` type can be inferred from code like the following:
 	 *
 	 * @codestart javascript
 	 * /**
 	 *  * The foo function exists
 	 *  *|
 	 * foo: function(){}
+	 * 
 	 * /**
 	 *  * The bar function exists
 	 *  *|

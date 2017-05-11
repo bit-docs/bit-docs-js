@@ -31,7 +31,7 @@ var path = require("path");
  *
  * The processor is also smart enough process regular comments above functions
  * that have not explicitly been documented with closure type annotations, and
- * extracts basic signature information such as parameters or return type.
+ * extracts basic signature information such as parameters and/or return type.
  * 
  * Registering the `html` hook adds a mustache template used to generate the
  * HTML for the tags added by this plugin.

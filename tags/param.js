@@ -30,61 +30,63 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 			params.push(param);
 		}
 	};
+
 	/**
 	 * @module {Object} bit-docs-js/tags/param @param
 	 * @parent bit-docs-js/tags
 	 *
-	 * Adds parameter information to a [bit-docs-js/tags/function @function] or
-	 * [bit-docs-js/tags/signature @signature].
+	 * Specifies parameter information for [bit-docs-js/tags/function] or
+	 * [bit-docs-js/tags/signature].
+	 * 
+	 * A "parameter" is a method definition variable, like `a` in `function(a)`.
 	 *
 	 * @signature `@param {TYPE} NAME [DESCRIPTION]`
-	 * Example:
+	 * 
 	 * @codestart javascript
      * /**
      *  * Finds an order by id.
-     *  * @@param {String} [id=0] Order identification number.
-     *  * @@param {function(Order)} [success(order)] Filter
-     *  * order search by this date.
+     *  * @param {String} [id=0] Order identification number.
+     *  * @param {function(Order)} [success(order)] Callback function.
      *  *|
-     *  findById: function( id, success ) {
-	 *  @codeend
+     * findById: function( id, success ) {
+	 * @codeend
 	 *
-	 * Use `@param` within a [bit-docs-js/tags/function @function] comment block or after
-	 * a [bit-docs-js/tags/signature @signature] tag.
+	 * Use `@param` within a [bit-docs-js/tags/function] comment block, or after
+	 * an [bit-docs-js/tags/signature] tag.
 	 *
 	 * @param {bit-docs-js/typeExpression} TYPE A [bit-docs-js/typeExpression type expression].
 	 *
-	 * Use [bit-docs-js/tags/option @option] to detail a function's arguments or an
-	 * object's properties.
+	 * Use [bit-docs-js/tags/option @option] to describe a function's arguments,
+	 * or an object's properties.
 	 *
 	 * @param {bit-docs-js/nameExpression} NAME A [bit-docs-js/nameExpression name expression].
 	 *
 	 * @body
 	 *
-	 * ## @param within a function comment
+	 * ## Use within a comment block
 	 *
-	 * If using a comment preceeds a function like ...
+	 * If the comment block precedes a function declaration, like:
 	 *
 	 * @codestart javascript
      * /**
      *  * Finds an order by id.
-     *  * @@param {String} [id=0] Order identification number.
-     *  * @@param {function(Order)} [success(order)] Filter order search by this date.
+     *  * @param {String} [id=0] Order identification number.
+     *  * @param {function(Order)} [success(order)] Filter order search by this.
      *  *|
-     *  findById: function( id, success ) {
-	 *  @codeend
+     * findById: function( id, success ) {
+	 * @codeend
 	 *
-	 * ... bit-docs will automatically
-	 * make the comment's [bit-docs-js/DocObject DocObject] type a function
-	 * and create params with just names (in this case `id` and `success`).
+	 * Then bit-docs will automatically set the type to function for the
+	 * [bit-docs-js/DocObject] representing that comment, and create params with
+	 * names only (in this case `id` and `success`, and no description).
 	 *
-	 * The comment's `@param`s tags should use the same names as the function. Any
-	 * params that specifies a name that isn't present is added at the end of
+	 * The comment's `@param`s tags should use the same names as the function.
+	 * Any param that specifies a name that isn't present is added at the end of
 	 * the arguments.
 	 *
-	 * ## @param within a signature
+	 * ## Use after @signature
 	 *
-	 * Use `@param` to specify the params in a signature.
+	 * Use `@param` to specify the parameter variables of a signature.
 	 *
 	 * @codestart javascript
      * /**
@@ -92,15 +94,14 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
      *  *
      *  * @signature `Order.findById(id=0,[success])`
      *  *
-     *  * @@param {String} [id=0] Order identification number.
-     *  * @@param {function(Order)} [success(order)] Filter order search by this date.
+     *  * @param {String} [id=0] Order identification number.
+     *  * @param {function(Order)} [success(order)] Callback function.
      *  *|
      * findById: function( id, success ) {
 	 * @codeend
 	 *
 	 * When a `@signature` is used, any params automatically created from code
 	 * are overwritten.
-	 *
 	 */
 	module.exports = {
 

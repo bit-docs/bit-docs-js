@@ -52,60 +52,58 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 
 
 	/**
-	 * @constructor documentjs.tags.option @option
+	 * @module bit-docs-js/tags/option @option
 	 * @tag documentation
-	 * @parent documentjs.tags
+	 * @parent bit-docs-js/tags
 	 *
-	 * Details the properties of an object or the arguments of a function
-	 * in a [documentjs.tags.param] tag.
-	 *
-	 * @signature `@option {TYPE} NAME [DESCRIPTION]`
-	 *
+	 * Describes a property or argument of the object or function specified in 
+	 * an [bit-docs-js/tags/param] tag.
+	 * 
+	 * @@signature `@option {TYPE} NAME [DESCRIPTION]`
+	 * 
 	 * @codestart javascript
-     * /**
-     *  * Retrieves a list of orders.
-     *  *
-     *  * @@param {{}} params A parameter object with the following options:
-     *  * @@option {String} type Specifies the type of order.
-     *  * @@option {Number} [createdAt] Retrieves all orders after this
-     *  * timestamp.
-     *  *
-     *  * @@param {function(Orders.List)} [success(orders)] Filter order search
-     *  * by this date.
-     *  * @@option orders A list of [Orders] that match `params`.
-     *  *|
-     *  find: function( params, success ) {
-	 *  @codeend
+	 * /**
+	 *  * Retrieves a list of orders.
+	 *  *
+	 *  * @param {{}} params A parameter object with the following options:
+	 *  * @option {String} type Specifies the type of order.
+	 *  * @option {Number} [createdAt] Retrieves orders after this timestamp.
+	 *  *
+	 *  * @param {function(Orders.List)} [success(orders)] Callback function.
+	 *  * @option orders A list of [Orders] that match `params`.
+	 *  *|
+	 * find: function( params, success ) {
+	 * @codeend
 	 *
 	 *
-	 * @param {documentjs.typeExpression} [TYPE] A [documentjs.typeExpression type expression]. Examples:
+	 * @param {bit-docs/typeExpression} [TYPE] A [bit-docs/typeExpression type expression]. Examples:
 	 *
 	 * `{String}` - type is a `String`.
 	 * `{function(name)}` - type is a `function` that takes one `name` argument.
 	 *
-	 * `TYPE` does not need to be specified for types that are already described in
-	 * the option's corresponding function or object.  For example:
-	 *
+	 * `TYPE` does not need to be specified for types that are already described
+	 * in the `@option`'s corresponding function or object.
+	 * 
+	 * For example, notice how there is no need to specify `{String}`:
 	 *
 	 * @codestart
-     * /**
-     *  * @@param {{type: String}} params A parameter object
-     *  * with the following options:
-     *  * @@option type Specifies the type of order.
-     *  *
-     *  * @@param {function(Orders.List)} [success(orders)] Callback
-     *  * function.
-     *  * @@option orders A list of [Orders] that match `params`.
-     *  *|
+	 * /**
+	 *  * @param {{type: String}} params An object with the following options:
+	 *  * @option type Specifies the type of order.
+	 *  * @option label Retrieves only orders with this label.
+	 *  *|
 	 * @codeend
-	 * @param {documentjs.nameExpression} NAME A [documentjs.nameExpression name expression]. Examples:
+	 * 
+	 * 
+	 * @param {bit-docs/nameExpression} NAME
+	 * A [bit-docs/nameExpression name expression]. Examples:
 	 *
 	 * `age` - age is item.
 	 * `[age]` - age is item, age is optional.
 	 * `[age=0]` - age defaults to 0.
 	 *
+	 * 
 	 * @param {Markdown} [DESCRIPTION] Markdown content that continues for multiple lines.
-	 *
 	 */
 	module.exports = {
 

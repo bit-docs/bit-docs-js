@@ -57,8 +57,8 @@ var setOptionData = function (option, data) {
  * @tag documentation
  * @parent bit-docs-js/tags
  *
- * Describes a property or argument of the object or function specified in 
- * an [bit-docs-js/tags/param] tag.
+ * Describes a property of the object, or an argument of the function, that was
+ * specified in an [bit-docs-js/tags/param] tag.
  * 
  * @signature `@option {TYPE} NAME [DESCRIPTION]`
  * 
@@ -96,8 +96,7 @@ var setOptionData = function (option, data) {
  * @codeend
  * 
  * 
- * @param {bit-docs/nameExpression} NAME
- * A [bit-docs/nameExpression name expression]. Examples:
+ * @param {bit-docs/nameExpression} NAME A [bit-docs/nameExpression name expression]. Examples:
  *
  * `age` - age is item.
  * `[age]` - age is item, age is optional.

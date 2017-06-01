@@ -11,6 +11,22 @@
       <ol>
         {{#params}}
           <li>{{{makeParams}}}: {{{makeHtml (makeLinks description)}}}</li>
+            {{#types}}
+              {{#if options.length}}
+              <ul class="options">
+                {{#options}}
+                <li class="option">
+                  <h5>{{name}} 
+                    {{#if types}}<code>{{{makeTypesString types}}}</code>{{/if}}
+                  </h5>
+                  <div class="description">
+                    {{{chain "makeHtml" "makeLinks" description}}}
+                  </div>
+                </li>
+                {{/options}}
+              </ul>
+              {{/if}}
+            {{/types}}
         {{/params}}
       </ol>
   </div>

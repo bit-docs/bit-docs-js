@@ -1,6 +1,5 @@
-@constructor documentjs.tags.module @module
-@tag documentation
-@parent documentjs.tags 
+@module {bit-docs-process-tags/tag} bit-docs-js/tags/module @module
+@parent bit-docs-js/tags
 
 Declares the export value for a module.
 
@@ -14,8 +13,9 @@ Declares the export value for a module.
  *|
 @codeend
 
-@param {documentjs.typeExpression} [TYPE] A [documentjs.typeExpression type expression]. This
-is typically an object specified like: `{{}}` or a function like `{function}`.  
+@param {bit-docs-type-annotate/typeExpression} [TYPE] A
+[bit-docs-type-annotate/typeExpression type expression]. This is typically an
+object specified like: `{{}}` or a function like `{function}`.
 
 @param {String} NAME The name of the type.
 
@@ -33,7 +33,7 @@ exports you might use as one of the following:
 ```
 /**
  * @module {function} multi/util/add
- * @parent multi.modules
+ * @parent multi/modules
  * 
  * Adds two numbers together.
  * 
@@ -42,9 +42,8 @@ exports you might use as one of the following:
  * @param {Number} first The first number.
  * @param {Number} second The second number to add.
  * @return {Number} The two numbers added together.
- * 
  */
-module.exports = function(first, second){
+module.exports = function(first, second) {
 	return first+second;
 };
 ```
@@ -54,21 +53,22 @@ module.exports = function(first, second){
 ```
 /**
  * @module {Module} multi/util/date-helpers
- * @parent multi.modules
+ * @parent multi/modules
  * 
  * Provides an object of date helpers.
  */
-// 
+
 /**
  * @function tomorrow
  * Provides the start time of tomorrow. 
  */
-exports.tomorrow = function(){ };
+exports.tomorrow = function() { ... };
+
 /**
  * @function yesterday
  * Provides the start time of yesterday. 
  */
-exports.yesterday = function(){ };
+exports.yesterday = function() { ... };
 ```
 
 #### A single constructor function export
@@ -76,12 +76,13 @@ exports.yesterday = function(){ };
 ```
 /**
  * @module {function(new:multi/lib/graph)} multi/lib/graph
- * @parent multi.modules
+ * @parent multi/modules
  * 
  * @signature `new Graph(graphData)`
  * @param {Object} graphData
  */
-function Graph(graphData){ … }
+function Graph(graphData) { ... }
+
 /**
  * @prototype
  */
@@ -89,7 +90,8 @@ Graph.prototype = {
 	/**
 	 * @function toChart
 	 */
-	toChart: function(){}
+	toChart: function() { ...}
 };
+
 module.exports = Graph;
 ```

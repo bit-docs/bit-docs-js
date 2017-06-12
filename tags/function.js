@@ -11,7 +11,7 @@ namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
  * @module {Object} bit-docs-js/tags/function @function
  * @parent bit-docs-js/tags
  *
- * @description Specifies the comment is for a function. Use 
+ * @description Specifies the comment block is for a function. Use 
  * [bit-docs-js/tags/param] to specify the parameters of a function.
  *
  * @signature `@function [NAME] [TITLE]`
@@ -46,7 +46,71 @@ namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
  * /**
  *  * The bar function exists
  *  *|
- * bar = function(){}
+ * bar = function(buz, baz){
+ *   return 'a string';
+ * }
+ * @codeend
+ * 
+ * The comment block above `foo` will automatically be associated with the
+ * function `foo`. Essentially, as if it had been explicitly written as:
+ * 
+ * @codestart javascript
+ * /**
+ *  * @function lib.foo foo
+ *  * @description The foo function exists
+ *  *|
+ * foo: function(){}
+ * @codeend
+ * 
+ * The same is true for the comment block above `bar`, which translates to:
+ * 
+ * @codestart javascript
+ * /**
+ *  * @function lib.bar bar
+ *  * @param {*} buz
+ *  * @param {*} baz
+ *  * @return {String}
+ *  * @description The bar function exists
+ *  *|
+ * bar = function(buz, baz){
+ *   return 'a string';
+ * }
+ * @codeend
+ * 
+ * Furthermore, the code matching can handle prototypes and methods like:
+ * 
+ * @codestart javascript
+ * /**
+ *  * @module {function} foo-bar
+ *  *|
+ * Foo = function(){};
+ * Object.assign(Foo.prototype, {
+ *   bar: function(arg1){}
+ * });
+ * module.exports = Foo;
+ * @codeend
+ * 
+ * Which translates to:
+ * 
+ * @codestart javascript
+ * /**
+ *  * @module {function} foo-bar
+ *  *|
+ * Foo = function(){};
+ * 
+ * /**
+ *  * @prototype
+ *  *|
+ * Object.assign(Foo.prototype, {
+ * 
+ *  /**
+ *   * The bar function exists
+ *   *|
+ *   bar: function(arg1){}
+ * 
+ * });
+ * 
+ * module.exports = Foo;
  * @codeend
  */
 module.exports = {

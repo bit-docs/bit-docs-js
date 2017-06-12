@@ -53,7 +53,7 @@ var setOptionData = function (option, data) {
 };
 
 /**
- * @module bit-docs-js/tags/option @option
+ * @module {bit-docs-process-tags/tag} bit-docs-js/tags/option @option
  * @tag documentation
  * @parent bit-docs-js/tags
  *

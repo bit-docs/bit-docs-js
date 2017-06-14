@@ -3,9 +3,10 @@ var processJavaScript = require("./process/javascript");
 var path = require("path");
 
 /**
- * @module {function} bit-docs-js
  * @parent plugins
+ * @module {function} bit-docs-js
  * @group bit-docs-js/tags tags
+ * @group bit-docs-js/templates templates
  *
  * @description Tags, templates, and basic styles for JavaScript.
  *

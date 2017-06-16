@@ -16,7 +16,8 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 	module.exports = {
 		add: function(line, curData, scope, docMap){
 			console.warn("Using the @class directive.  It is deprecated!");
-			// it's possible this has already been matched as something else ... clear parent
+			// it's possible this has already been matched as something else
+			// ... clear parent
 
 			this.type = "constructor";
 			var data = tnd(line);

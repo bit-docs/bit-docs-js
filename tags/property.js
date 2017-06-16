@@ -3,8 +3,8 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 	updateNameWithScope = require("../lib/updateNameAndParentWithScope");
 
 /**
- * @module {bit-docs-process-tags/tag} bit-docs-js/tags/property @property
  * @parent bit-docs-js/tags
+ * @module {bit-docs-process-tags/tag} bit-docs-js/tags/property @property
  *
  * Documents a property of a parent object.
  *

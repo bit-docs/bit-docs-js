@@ -1,17 +1,56 @@
-@module {bit-docs-process-tags/tag} bit-docs-js/tags/module @module
 @parent bit-docs-js/tags
+@module {bit-docs-process-tags/tag} bit-docs-js/tags/module @module
 
 Declares the export value for a module.
 
 @signature `@module {TYPE} NAME [TITLE]`
 
-@codestart
+```js
 /**
- * @module {{}} lib/componentProps props
- * @option {String} name The name of the component.
- * @option {String} title The title of the component.
- *|
-@codeend
+ * @module {{}} lib/settings settings
+ * @option {String} environment Production, development, or staging.
+ * @option {Number} requestTimeout How long to wait between requests.
+ */
+export default {
+    environment: "production",
+    requestTimeout: 10000
+}
+```
+
+```js
+// resulting docObject
+{
+  "type": "module",
+  "description": "",
+  "title": "settings",
+  "types": [
+    {
+      "type": "Object",
+      "options": [
+        {
+          "name": "environment",
+          "description": "Production, development, or staging.",
+          "types": [
+            {
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "requestTimeout",
+          "description": "How long to wait between requests.\n",
+          "types": [
+            {
+              "type": "Number"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "name": "lib/settings"
+}
+```
 
 @param {bit-docs-type-annotate/typeExpression} [TYPE] A
 [bit-docs-type-annotate/typeExpression type expression]. This is typically an
@@ -30,7 +69,7 @@ exports you might use as one of the following:
 
 #### A single function export
 
-```
+```js
 /**
  * @module {function} multi/util/add
  * @parent multi/modules
@@ -50,7 +89,7 @@ module.exports = function(first, second) {
 
 #### Multiple export values
 
-```
+```js
 /**
  * @module {Module} multi/util/date-helpers
  * @parent multi/modules
@@ -73,7 +112,7 @@ exports.yesterday = function() { ... };
 
 #### A single constructor function export
 
-```
+```js
 /**
  * @module {function(new:multi/lib/graph)} multi/lib/graph
  * @parent multi/modules

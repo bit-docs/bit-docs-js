@@ -1,14 +1,13 @@
 	/**
 	 * @hide
-	 * @constructor documentjs.tags.codeend @codeend
-	 * @tag documentation
-	 * @parent documentjs.tags
+	 * @parent bit-docs-js/tags
+	 * @module {bit-docs-js/tag} bit-docs-js/tags/codeend @codeend
 	 * 
 	 * @description 
 	 * 
 	 * Stops a code block.
 	 * 
-	 * ###Example:
+	 * ### Example:
 	 * 
 	 * @codestart
 	 *

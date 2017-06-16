@@ -8,8 +8,8 @@ keyFunction = /(?:([\w\.\$]+)|(["'][^"']+["']))\s*[:=].*function\s?\(([^\)]*)/;
 namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
 
 /**
- * @module {Object} bit-docs-js/tags/function @function
  * @parent bit-docs-js/tags
+ * @module {bit-docs-js/tag} bit-docs-js/tags/function @function
  *
  * @description Specifies the comment block is for a function. Use 
  * [bit-docs-js/tags/param] to specify the parameters of a function.

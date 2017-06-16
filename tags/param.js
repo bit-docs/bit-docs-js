@@ -34,8 +34,8 @@ var addParam = function (param, params) {
 };
 
 /**
- * @module {Object} bit-docs-js/tags/param @param
  * @parent bit-docs-js/tags
+ * @module {Object} bit-docs-js/tags/param @param
  *
  * Specifies parameter information for [bit-docs-js/tags/function] or
  * [bit-docs-js/tags/signature].
@@ -125,8 +125,8 @@ module.exports = {
 			}
 		}
 
-		// if we have a signiture, add this param to the last
-		// signiture
+		// if we have a signature, add this param to the last
+		// signature
 		if (this.signatures) {
 			this.signatures[this.signatures.length - 1].params.push(param);
 		} else {

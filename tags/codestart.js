@@ -1,7 +1,7 @@
 	/**
-	 * @constructor documentjs.tags.codestart @codestart
 	 * @hide
-	 * @parent documentjs.tags 
+	 * @parent bit-docs-js/tags
+	 * @module {bit-docs-js/tag} bit-docs-js/tags/codestart @codestart
 	 * 
 	 * Starts a code block.  
 	 * 
@@ -11,7 +11,7 @@
 	 *   
 	 * Must end with "@codeend".
 	 * 
-	 * ###Example:
+	 * ### Example:
 	 * 
 	 * @codestart
 	 *

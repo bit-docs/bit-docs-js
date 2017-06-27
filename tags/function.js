@@ -18,11 +18,24 @@ namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
  *
  * @codestart javascript
  * /**
+ *  * @module {{}} lib.component Component
+ *  *|
+ * 
+ * /**
  *  * @function lib.Component.prototype.update update
  *  * @parent lib.Component
  *  *|
- * C.p.update = function(){
- *
+ * C.p.update = function(){ /* ... *| }
+ * 
+ * // resulting docObject
+ * {
+ *   "type": "function",
+ *   "name": "lib.Component.prototype.update",
+ *   "params": [],
+ *   "parent": "lib.Component",
+ *   "description": "\n",
+ *   "title": "update",
+ *   "pathToRoot": ".."
  * }
  * @codeend
  *

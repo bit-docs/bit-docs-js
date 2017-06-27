@@ -35,7 +35,7 @@ var addParam = function (param, params) {
 
 /**
  * @parent bit-docs-js/tags
- * @module {Object} bit-docs-js/tags/param @param
+ * @module {bit-docs-js/tag} bit-docs-js/tags/param @param
  *
  * Specifies parameter information for [bit-docs-js/tags/function] or
  * [bit-docs-js/tags/signature].
@@ -58,8 +58,8 @@ var addParam = function (param, params) {
  *
  * @param {bit-docs-js/typeExpression} TYPE A [bit-docs-js/typeExpression type expression].
  *
- * Use [bit-docs-js/tags/option @option] to describe a function's arguments,
- * or an object's properties.
+ * Use [bit-docs-js/tags/option @option] to describe a function's arguments, or
+ * an object's properties.
  *
  * @param {bit-docs-js/nameExpression} NAME A [bit-docs-js/nameExpression name expression].
  *

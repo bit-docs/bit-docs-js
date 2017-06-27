@@ -61,18 +61,25 @@ var setOptionData = function (option, data) {
  * 
  * @signature `@option {TYPE} NAME [DESCRIPTION]`
  * 
+ * Here's an example of some ways you can use the `@option` tag:
+ * 
  * @codestart javascript
  * /**
- *  * Retrieves a list of orders.
- *  *
- *  * @param {{}} params A parameter object with the following options:
- *  * @option {String} type Specifies the type of order.
- *  * @option {Number} [createdAt] Retrieves orders after this timestamp.
- *  *
- *  * @param {function(Orders.List)} [success(orders)] Callback function.
- *  * @option orders A list of [Orders] that match `params`.
+ *  * @module {{}} ledger Ledger
  *  *|
- * find: function( params, success ) { ... }
+ * module.exports = {
+ *   /**
+ *    * Retrieves a list of orders.
+ *    *
+ *    * @param {{}} params A parameter object with the following options:
+ *    *   @option {String} type Specifies the type of order.
+ *    *   @option {Number} [createdAt] Retrieves orders after this timestamp.
+ *    *
+ *    * @param {function(Orders.List)} [success(orders)] Callback function.
+ *    *   @option orders A list of [Orders] that match `params`.
+ *    *|
+ *   find: function(params, success) { /*...*| }
+ * };
  * @codeend
  *
  * @param {bit-docs/typeExpression} [TYPE] A [bit-docs/typeExpression type expression]. Examples:
@@ -88,10 +95,13 @@ var setOptionData = function (option, data) {
  * @codestart
  * /**
  *  * @param {{type: String}} params An object with the following options:
- *  * @option type Specifies the type of order.
- *  * @option label Retrieves only orders with this label.
+ *  *   @option type Specifies the type of order.
+ *  *   @option label Retrieves only orders with this label.
  *  *|
  * @codeend
+ * 
+ * However, omitting TYPE might confuse your team members, so we recommend
+ * being explicit and always specifying TYPE for `@option`.
  * 
  * @param {bit-docs/nameExpression} NAME A [bit-docs/nameExpression name expression]. Examples:
  *
@@ -100,6 +110,92 @@ var setOptionData = function (option, data) {
  * `[age=0]` - age defaults to 0.
  * 
  * @param {Markdown} [DESCRIPTION] Markdown content that continues for multiple lines.
+ * 
+ * @body
+ * 
+ * ### Usage Examples
+ * 
+ * @codestart javascript
+ * /**
+ *  * @module {{}} foo Foo
+ *  *|
+ * module.exports = {
+ *   /**
+ *    * A function named bar.
+ *    *
+ *    * @param {{}} params A parameter object with options:
+ *    *   @option {String} aString An arbitrary string.
+ *    *   @option {Number} [oNumber] An optional number.
+ *    *|
+ *   bar: function(params) { /*...*| }
+ * };
+ * @codeend
+ * 
+ * Resulting [bit-docs/types/docObject]:
+ * 
+ * @codestart javascript
+ * {
+ *   "type": "function",
+ *   "name": "foo.bar",
+ *   "params": [
+ *     {
+ *       "types": [
+ *         {
+ *           "type": "Object",
+ *           "options": [
+ *             {
+ *               "name": "aString",
+ *               "description": "An arbitrary string.",
+ *               "types": [
+ *                 {
+ *                   "type": "String"
+ *                 }
+ *               ]
+ *             },
+ *             {
+ *               "name": "oNumber",
+ *               "description": "An optional number.\n",
+ *               "types": [
+ *                 {
+ *                   "type": "Number"
+ *                 }
+ *               ],
+ *               "optional": true
+ *             }
+ *           ]
+ *         }
+ *       ],
+ *       "name": "params",
+ *       "description": "A parameter object with options:"
+ *     }
+ *   ],
+ *   "parent": "foo",
+ *   "description": "A function named bar.\n"
+ * }
+ * @codeend
+ * 
+ * That [bit-docs/types/docObject] an be used in a template like this:
+ *
+ * @codestart html
+ * {{#if params}}
+ *   {{#params}}
+ *     {{#types}}
+ *       {{#if options.length}}
+ *         {{#options}}
+ *           <p>
+ *             Option Name: {{name}}
+ *             <br/>
+ *             Option Description: {{description}}
+ *           </p>
+ *         {{/options}}
+ *       {{/if}}
+ *     {{/types}}
+ *   {{/params}}
+ * {{/if}}
+ * @codeend
+ * 
+ * See [signature.mustache] for a more complex template that uses the
+ * [bit-docs/types/docObject] resulting from `@option`.
  */
 module.exports = {
 	addMore: function (line, last) {

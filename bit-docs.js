@@ -6,7 +6,7 @@ var path = require("path");
  * @parent plugins
  * @module {function} bit-docs-js
  * @group bit-docs-js/tags tags
- * @group bit-docs-js/templates templates
+ * @group bit-docs-js/theme theme
  *
  * @description Tags, templates, and basic styles for JavaScript.
  *

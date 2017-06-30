@@ -1,5 +1,5 @@
-@parent bit-docs-js/theme
-@module bit-docs-js/site/templates/signature.mustache signature.mustache
+@parent bit-docs-js/templates
+@page bit-docs-js/templates/signature.mustache signature.mustache
 
 @description The function signature template.
 

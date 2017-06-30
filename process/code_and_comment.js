@@ -1,33 +1,33 @@
-var processCode = require("./code"),
-	processTags = require("bit-docs-process-tags");
+var processCode = require("./code");
+var processTags = require("bit-docs-process-tags");
 
 var typeCheckReg = /^\s*@(\w+)/;
+
 /**
- * @function documentjs.process.codeAndComment
- * @parent documentjs.process.methods
+ * @parent bit-docs-js/modules
+ * @module {function} bit-docs-js/process/codeAndComment codeAndComment
  *
- * @signature `documentjs.process.codeAndComment(options, callback)`
+ * @signature `processCodeAndComment(options, callback)`
  *
  * Processes a code suggestion and then a comment and produces a docObject.
  *
- * @param {documentjs.process.processOptions} options An options object that contains
- * the code and comment to process.
+ * @param {bit-docs/types/processOptions} options An options object that
+ * contains the code and comment to process.
  *
- * @param {function(documentjs.process.docObject,documentjs.process.docObject)} callback(newDoc,newScope)
+ * @param {function(bit-docs/types/docObject,bit-docs/types/docObject)} callback(newDoc,newScope)
  *
- * A function that is called back with a docObject created from the code and the scope
- * `docObject`.  If
- * no docObject is created, `newDoc` will be null.
+ * A function that is called back with a docObject created from the code and
+ * the scope `docObject`. If no docObject is created, `newDoc` will be null.
  *
  * @option newDoc the new documentation object
  * @option newScope the new scope
  */
 module.exports = function(options, callback){
-	var self = this,
-		comment = options.comment;
+	var self = this;
+	var comment = options.comment;
 
-	var firstLine = (typeof comment == 'string' ? comment : comment[0]) || "",
-		check = firstLine.match(typeCheckReg);
+	var firstLine = (typeof comment == 'string' ? comment : comment[0]) || "";
+	var check = firstLine.match(typeCheckReg);
 
 	if(check){
 		if(!options.docObject){

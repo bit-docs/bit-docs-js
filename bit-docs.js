@@ -5,8 +5,9 @@ var path = require("path");
 /**
  * @parent plugins
  * @module {function} bit-docs-js
+ * @group bit-docs-js/modules modules
  * @group bit-docs-js/tags tags
- * @group bit-docs-js/theme theme
+ * @group bit-docs-js/templates templates
  *
  * @description Tags, templates, and basic styles for JavaScript.
  *
@@ -20,11 +21,19 @@ var path = require("path");
  *   - `processor`
  *   - `html`
  * 
- * Registering the `tag` hook adds JavaScript-related tags:
+ * Registering the `tags` hook adds JavaScript-related tags:
+ *   - [bit-docs-js/tags/codeend @codeend]
+ *   - [bit-docs-js/tags/codestart @codestart]
  *   - [bit-docs-js/tags/function @function]
+ *   - [bit-docs-js/tags/module @module]
+ *   - [bit-docs-js/tags/option @option]
  *   - [bit-docs-js/tags/param @param]
+ *   - [bit-docs-js/tags/property @property]
+ *   - [bit-docs-js/tags/prototype @prototype]
+ *   - [bit-docs-js/tags/return @return]
  *   - [bit-docs-js/tags/signature @signature]
- *   - ...
+ *   - [bit-docs-js/tags/static @static]
+ *   - [bit-docs-js/tags/typedef @typedef]
  * 
  * Registering the `processor` hook adds a processor for `*.js` files that gets
  * code comments in JavaScript, and processes tags like `@function` and

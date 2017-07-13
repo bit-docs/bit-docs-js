@@ -22,8 +22,6 @@ var path = require("path");
  *   - `html`
  * 
  * Registering the `tags` hook adds JavaScript-related tags:
- *   - [bit-docs-js/tags/codeend @codeend]
- *   - [bit-docs-js/tags/codestart @codestart]
  *   - [bit-docs-js/tags/function @function]
  *   - [bit-docs-js/tags/module @module]
  *   - [bit-docs-js/tags/option @option]
@@ -32,12 +30,12 @@ var path = require("path");
  *   - [bit-docs-js/tags/prototype @prototype]
  *   - [bit-docs-js/tags/return @return]
  *   - [bit-docs-js/tags/signature @signature]
- *   - [bit-docs-js/tags/static @static]
  *   - [bit-docs-js/tags/typedef @typedef]
  * 
  * Registering the `processor` hook adds a processor for `*.js` files that gets
  * code comments in JavaScript, and processes tags like `@function` and
- * `@param` into docObjects that are subsequently added to the docMap.
+ * `@param` into [bit-docs/types/docObject]s that are subsequently added to the
+ * [bit-docs/types/docMap].
  *
  * The processor is also smart enough process regular comments above functions
  * that have not explicitly been documented with closure type annotations, and
@@ -54,5 +52,4 @@ module.exports = function(bitDocs){
     bitDocs.register("html", {
         templates: path.join(__dirname, "templates")
     });
-
 };

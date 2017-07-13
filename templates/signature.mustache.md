@@ -1,5 +1,5 @@
 @parent bit-docs-js/templates
-@page bit-docs-js/templates/signature.mustache signature.mustache
+@module bit-docs-js/templates/signature.mustache
 
 @description The function signature template.
 
@@ -8,7 +8,7 @@
 The `signature.mustache` template outputs a function signature.
 
 For tips on adding this template to your custom theme, see
-[bit-docs-generate-html/theme/templates/content].
+[bit-docs-generate-html/site/default/templates/content.mustache].
 
 You can use the following snippet:
 

@@ -21,8 +21,8 @@ var getParent = require("bit-docs-process-tags/get-parent"),
  * $.fixture.delay = 200
  * @codeend
  *
- * @param {bit-docs-js/tags/typeExpression} [TYPE] An optional type like `{Object}`.
- * @param {bit-docs-js/tags/nameExpression} [NAME] The name of the property.
+ * @param {bit-docs-type-annotate/types/typeExpression} [TYPE] An optional type like `{Object}`.
+ * @param {bit-docs-type-annotate/types/nameExpression} [NAME] The name of the property.
  * This maybe inferred from the code block immediately following the comment.
  * @param {STRING} [TITLE] The display title of the property.
  *
@@ -30,6 +30,8 @@ var getParent = require("bit-docs-process-tags/get-parent"),
  *
  * If code matches the above regular expression and is not a function, it is
  * automatically assumed to be a property.
+ * 
+ * @return {bit-docs-process-tags/tag} TBD
  */
 	module.exports = {
 		codeMatch: function( code ) {

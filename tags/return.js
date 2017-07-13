@@ -13,7 +13,7 @@ var addReturnToTypes = function(tagData, returns){
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs-js/tag} bit-docs-js/tags/return @return
+ * @module {bit-docs/types/tag} bit-docs-js/tags/return @return
  *
  * Describes a function's return value.
  *
@@ -29,7 +29,7 @@ var addReturnToTypes = function(tagData, returns){
  * capitalize: function( s ) { ... }
  * @codeend
  *
- * @param {documentjs.typeExpression} [TYPE] The type of
+ * @param {bit-docs-type-annotate/types/typeExpression} [TYPE] The type of
  * return value.
  *
  * @param {String} [DESCRIPTION] The description of the

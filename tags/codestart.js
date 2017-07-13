@@ -1,7 +1,7 @@
 	/**
 	 * @hide
 	 * @parent bit-docs-js/tags
-	 * @module {bit-docs-js/tag} bit-docs-js/tags/codestart @codestart
+	 * @module {bit-docs/types/tag} bit-docs-js/tags/codestart @codestart
 	 * 
 	 * Starts a code block.  
 	 * 

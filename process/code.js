@@ -1,28 +1,32 @@
 var _ = require("lodash");
+
 /**
  * @parent bit-docs-js/modules
- * @module {function} bit-docs-js/process/code code
+ * @module {function} bit-docs-js/process/code
  *
- * Process a code hint into properties on a `docObject`.
+ * Process a code hint into properties on a [bit-docs/types/docObject].
  *
  * @signature `processCode(options, callback)`
  *
  * Using the `options.code`, and `options.tags`, processes the code into
- * properties on a docObject. The `callback` is called with the new docObject.
+ * properties on a [bit-docs/types/docObject].
+ * 
+ * The `callback` is called with the new [bit-docs/types/docObject].
  *
  * @param {bit-docs/types/processOptions} options An options object that
  * contains the code to process.
  *
  * @param {function(bit-docs/types/docObject,bit-docs/types/docObject)} callback(newDoc,newScope)
  *
- * A function that is called back with a docObject created from the code and
- * the scope `docObject`. If no docObject is created, `newDoc` will be null.
+ * A function that is called back with a [bit-docs/types/docObject] created
+ * from the code and the scope `docObject`. If no [bit-docs/types/docObject] is
+ * created, `newDoc` will be null.
  *
  * @body
  *
  * ## Use
  *
- *     documentjs.process.code(
+ *     process.code(
  * 	      {code: "foo: function(){"},
  *        function(newDoc){
  *          newDoc.type //-> "function"

@@ -5,19 +5,21 @@ var typeCheckReg = /^\s*@(\w+)/;
 
 /**
  * @parent bit-docs-js/modules
- * @module {function} bit-docs-js/process/codeAndComment codeAndComment
+ * @module {function} bit-docs-js/process/codeAndComment
  *
  * @signature `processCodeAndComment(options, callback)`
  *
- * Processes a code suggestion and then a comment and produces a docObject.
+ * Processes a code suggestion and then a comment and produces a
+ * [bit-docs/types/docObject].
  *
  * @param {bit-docs/types/processOptions} options An options object that
  * contains the code and comment to process.
  *
  * @param {function(bit-docs/types/docObject,bit-docs/types/docObject)} callback(newDoc,newScope)
  *
- * A function that is called back with a docObject created from the code and
- * the scope `docObject`. If no docObject is created, `newDoc` will be null.
+ * A function that is called back with a [bit-docs/types/docObject] created
+ * from the code and the scope `docObject`. If no [bit-docs/types/docObject] is
+ * created, `newDoc` will be null.
  *
  * @option newDoc the new documentation object
  * @option newScope the new scope

@@ -1,1 +1,1 @@
-require('./static/styles/styles.less');
+require('./static/styles/signature.less');

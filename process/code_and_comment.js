@@ -1,33 +1,35 @@
-var processCode = require("./code"),
-	processTags = require("bit-docs-process-tags");
+var processCode = require("./code");
+var processTags = require("bit-docs-process-tags");
 
 var typeCheckReg = /^\s*@(\w+)/;
+
 /**
- * @function documentjs.process.codeAndComment
- * @parent documentjs.process.methods
+ * @parent bit-docs-js/modules
+ * @module {function} bit-docs-js/process/codeAndComment
  *
- * @signature `documentjs.process.codeAndComment(options, callback)`
+ * @signature `processCodeAndComment(options, callback)`
  *
- * Processes a code suggestion and then a comment and produces a docObject.
+ * Processes a [bit-docs-js/types/codeTagBlock] and the
+ * [bit-docs-js/types/codeLine] immediately following the
+ * [bit-docs-js/types/codeTagBlock] to produce a new
+ * [bit-docs/types/docObject].
  *
- * @param {documentjs.process.processOptions} options An options object that contains
- * the code and comment to process.
+ * @param {bit-docs-js/types/processCodeOptions} options
+ * 
+ * Options object that includes the [bit-docs-js/types/codeTagBlock] and any
+ * [bit-docs-js/types/codeLine] that immediately followed the
+ * [bit-docs-js/types/codeTagBlock].
  *
- * @param {function(documentjs.process.docObject,documentjs.process.docObject)} callback(newDoc,newScope)
+ * @param {bit-docs/types/processorCallback} callback
  *
- * A function that is called back with a docObject created from the code and the scope
- * `docObject`.  If
- * no docObject is created, `newDoc` will be null.
- *
- * @option newDoc the new documentation object
- * @option newScope the new scope
+ * Callback to call with the new [bit-docs/types/docObject].
  */
 module.exports = function(options, callback){
-	var self = this,
-		comment = options.comment;
+	var self = this;
+	var comment = options.comment;
 
-	var firstLine = (typeof comment == 'string' ? comment : comment[0]) || "",
-		check = firstLine.match(typeCheckReg);
+	var firstLine = (typeof comment == 'string' ? comment : comment[0]) || "";
+	var check = firstLine.match(typeCheckReg);
 
 	if(check){
 		if(!options.docObject){

@@ -11,30 +11,30 @@ var addReturnToTypes = function(tagData, returns){
 	}
 };
 
-	/**
-	 * @constructor documentjs.tags.return @return
-	 * @parent documentjs.tags
-	 *
-	 * Describes a function's return value.
-	 *
-	 * @signature `@return {TYPE} DESCRIPTION`
-	 *
-	 * @codestart javascript
-	 * /**
-	 *  * Capitalizes a string
-	 *  * @@param {String} s the string to be lowercased.
-	 *  * @@return {String} a string with the first character capitalized,
-	 *  * and everything else lowercased
-	 *  *|
-	 * capitalize: function( s ) { ... }
-	 * @codeend
-	 *
-	 * @param {documentjs.typeExpression} [TYPE] The type of
-	 * return value.
-	 *
-	 * @param {String} [DESCRIPTION] The description of the
-	 * return value.
-	 */
+/**
+ * @parent bit-docs-js/tags
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/return @return
+ *
+ * Describes a function's return value.
+ *
+ * @signature `@return {TYPE} DESCRIPTION`
+ *
+ * @codestart javascript
+ * /**
+ *  * Capitalizes a string
+ *  * @@param {String} s the string to be lowercased.
+ *  * @@return {String} a string with the first character capitalized,
+ *  * and everything else lowercased
+ *  *|
+ * capitalize: function( s ) { ... }
+ * @codeend
+ *
+ * @param {bit-docs-type-annotate/types/typeExpression} [TYPE] The type of
+ * return value.
+ *
+ * @param {String} [DESCRIPTION] The description of the
+ * return value.
+ */
 module.exports = {
 	add: function( line, tagData ) {
 

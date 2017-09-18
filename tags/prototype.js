@@ -1,33 +1,31 @@
 var getParent = require("bit-docs-process-tags/get-parent"),
 	tnd = require("bit-docs-type-annotate").typeNameDescription;
 
-	/**
-	 * @constructor documentjs.tags.prototype @prototype
-	 * @parent documentjs.tags
-	 *
-	 * Declares that [documentjs.tags.property] and
-	 * [documentjs.tags.function] tags belong
-	 * to the preceeding [documentjs.tags.function]'s
-	 * prototype object.
-	 *
-	 * @signature `@prototype`
-	 *
-	 * @codestart javascript
-	 * /**
-	 *  * @@function
-	 *  * Creates an Animal
-	 *  *|
-	 * Animal = function(){ ... }
-     * /** @@prototype *|
-     * Animal.prototype = {
-     *    /**
-     *     * Eats another animal.
-     *     *|
-     *     eat: function(animal){ ... }
-     * }
-	 * @codeend
-	 *
-	 */
+/**
+ * @parent bit-docs-js/tags
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/prototype @prototype
+ *
+ * Declares that [bit-docs-js/tags/property] and [bit-docs-js/tags/function]
+ * tags belong to the preceeding [bit-docs-js/tags/function]'s prototype
+ * object.
+ *
+ * @signature `@prototype`
+ *
+ * @codestart javascript
+ * /**
+ *  * @@function
+ *  * Creates an Animal
+ *  *|
+ * Animal = function(){ ... }
+ * /** @@prototype *|
+ * Animal.prototype = {
+ *    /**
+ *     * Eats another animal.
+ *     *|
+ *     eat: function(animal){ ... }
+ * }
+ * @codeend
+ */
 	module.exports = {
 		add: function(line, curData, scope, docMap){
 

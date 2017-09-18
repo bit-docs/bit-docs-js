@@ -9,20 +9,20 @@ var typeCheckReg = /^\s*@(\w+)/;
  *
  * @signature `processCodeAndComment(options, callback)`
  *
- * Processes a code suggestion and then a comment and produces a
+ * Processes a [bit-docs-js/types/codeTagBlock] and the
+ * [bit-docs-js/types/codeLine] immediately following the
+ * [bit-docs-js/types/codeTagBlock] to produce a new
  * [bit-docs/types/docObject].
  *
- * @param {bit-docs/types/processOptions} options An options object that
- * contains the code and comment to process.
+ * @param {bit-docs-js/types/processCodeOptions} options
+ * 
+ * Options object that includes the [bit-docs-js/types/codeTagBlock] and any
+ * [bit-docs-js/types/codeLine] that immediately followed the
+ * [bit-docs-js/types/codeTagBlock].
  *
- * @param {function(bit-docs/types/docObject,bit-docs/types/docObject)} callback(newDoc,newScope)
+ * @param {bit-docs/types/processorCallback} callback
  *
- * A function that is called back with a [bit-docs/types/docObject] created
- * from the code and the scope `docObject`. If no [bit-docs/types/docObject] is
- * created, `newDoc` will be null.
- *
- * @option newDoc the new documentation object
- * @option newScope the new scope
+ * Callback to call with the new [bit-docs/types/docObject].
  */
 module.exports = function(options, callback){
 	var self = this;

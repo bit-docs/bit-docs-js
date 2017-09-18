@@ -3,7 +3,7 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs-process-tags/tag} bit-docs-js/tags/prototype @prototype
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/prototype @prototype
  *
  * Declares that [bit-docs-js/tags/property] and [bit-docs-js/tags/function]
  * tags belong to the preceeding [bit-docs-js/tags/function]'s prototype

@@ -35,7 +35,7 @@ var addParam = function (param, params) {
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs/types/tag} bit-docs-js/tags/param @param
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/param @param
  *
  * Specifies parameter information for [bit-docs-js/tags/function] or
  * [bit-docs-js/tags/signature].
@@ -62,6 +62,8 @@ var addParam = function (param, params) {
  * an object's properties.
  *
  * @param {bit-docs-type-annotate/types/nameExpression} NAME A [bit-docs-type-annotate/types/nameExpression name expression].
+ * 
+ * @param {Markdown} [DESCRIPTION] Markdown content that continues for multiple lines.
  *
  * @body
  *

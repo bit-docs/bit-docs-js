@@ -1,10 +1,10 @@
-var getParent = require("bit-docs-process-tags/get-parent"),
-	tnd = require("bit-docs-type-annotate").typeNameDescription,
-	updateNameWithScope = require("../lib/updateNameAndParentWithScope");
+var getParent = require("bit-docs-process-tags/get-parent");
+var tnd = require("bit-docs-type-annotate").typeNameDescription;
+var updateNameWithScope = require("../lib/updateNameAndParentWithScope");
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs-process-tags/tag} bit-docs-js/tags/property @property
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/property @property
  *
  * Documents a property of a parent object.
  *
@@ -31,45 +31,47 @@ var getParent = require("bit-docs-process-tags/get-parent"),
  * If code matches the above regular expression and is not a function, it is
  * automatically assumed to be a property.
  * 
- * @return {bit-docs-process-tags/tag} TBD
+ * @return {bit-docs-process-tags/types/tag} Object with functions that compose the
+ * [bit-docs-js/tags/property] tag.
  */
-	module.exports = {
-		codeMatch: function( code ) {
-			return code.match(/["']?(\w+)["']?\s*[:=]\s*/) && !code.match(/["']?(\w+)["']?\s*[:=]\s*function\(([^\)]*)/);
-		},
-		code: function( code, scope, docMap ) {
-			var parts = code.match(/["']?(\w+)["']?\s*[:=]\s*/);
-			if ( parts ) {
+module.exports = {
+	codeMatch: function( code ) {
+		return code.match(/["']?(\w+)["']?\s*[:=]\s*/) && !code.match(/["']?(\w+)["']?\s*[:=]\s*function\(([^\)]*)/);
+	},
+	code: function( code, scope, docMap ) {
+		var parts = code.match(/["']?(\w+)["']?\s*[:=]\s*/);
 
-				var props = {
-					name: parts[1],
-					type: "property"
-				};
-				if(scope && docMap) {
-					var parentAndName = getParent.andName({
-						parents: "*",
-						useName: ["constructor","static","prototype","function","module"],
-						scope: scope,
-						docMap: docMap,
-						name: props.name
-					});
-					props.name = parentAndName.name;
-					props.parent = parentAndName.parent;
-				}
+		if ( parts ) {
+			var props = {
+				name: parts[1],
+				type: "property"
+			};
 
+			if(scope && docMap) {
+				var parentAndName = getParent.andName({
+					parents: "*",
+					useName: ["constructor", "static", "prototype", "function", "module"],
+					scope: scope,
+					docMap: docMap,
+					name: props.name
+				});
 
-				return props
+				props.name = parentAndName.name;
+				props.parent = parentAndName.parent;
 			}
-		},
-		add: function(line, curData, scope, docMap){
-			var data = tnd(line);
-			this.types = data.types
 
-			this.title = data.description;
-			if(data.name){
-				this.name = data.name;
-			}
-			updateNameWithScope(this, scope, docMap);
-			this.type = "property";
+			return props;
 		}
-	};
+	},
+	add: function(line, curData, scope, docMap){
+		var data = tnd(line);
+		this.types = data.types
+
+		this.title = data.description;
+		if(data.name){
+			this.name = data.name;
+		}
+		updateNameWithScope(this, scope, docMap);
+		this.type = "property";
+	}
+};

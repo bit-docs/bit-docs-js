@@ -13,7 +13,7 @@ var addReturnToTypes = function(tagData, returns){
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs/types/tag} bit-docs-js/tags/return @return
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/return @return
  *
  * Describes a function's return value.
  *

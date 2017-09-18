@@ -2,7 +2,7 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs/types/tag} bit-docs-js/tags/typedef @typedef
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/typedef @typedef
  * 
  * Declares an alias for a more complex type. That alias can be used in
  * [bit-docs-type-annotate/types/typeExpression TYPE] declarations.

@@ -1,7 +1,6 @@
 @parent bit-docs-js/tags
-@module {bit-docs-process-tags/tag} bit-docs-js/tags/module @module
-
-Declares the export value for a module.
+@constructor bit-docs-js/tag/module @module
+@description Declares the export value for a module.
 
 @signature `@module {TYPE} NAME [TITLE]`
 
@@ -52,9 +51,9 @@ export default {
 }
 ```
 
-@param {bit-docs-type-annotate/typeExpression} [TYPE] A
-[bit-docs-type-annotate/typeExpression type expression]. This is typically an
-object specified like: `{{}}` or a function like `{function}`.
+@param {bit-docs-type-annotate/types/typeExpression} [TYPE] A
+[bit-docs-type-annotate/types/typeExpression type expression]. This is
+typically an object specified like: `{{}}` or a function like `{function}`.
 
 @param {String} NAME The name of the type.
 
@@ -64,8 +63,8 @@ object specified like: `{{}}` or a function like `{function}`.
 
 ## Use
 
-Use `@module` to specify what a module exports.  Depending on what the module
-exports you might use as one of the following:
+Use `@module` to specify what a module exports. Depending on what the module
+exports you might use one of the following:
 
 #### A single function export
 

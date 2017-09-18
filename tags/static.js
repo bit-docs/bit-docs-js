@@ -4,7 +4,7 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
 /**
  * @hide
  * @parent bit-docs-js/tags
- * @module {bit-docs/types/tag} bit-docs-js/tags/static @static
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/static @static
  *
  * Declares that [bit-docs-js/tags/property @property] and
  * [bit-docs-js/tags/function @function] tags belong to the preceeding

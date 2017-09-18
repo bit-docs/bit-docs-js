@@ -54,7 +54,7 @@ var setOptionData = function (option, data) {
 
 /**
  * @parent bit-docs-js/tags
- * @module {bit-docs-process-tags/tag} bit-docs-js/tags/option @option
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/option @option
  *
  * Describes a property of the object, or an argument of the function, that was
  * specified in an [bit-docs-js/tags/param] tag.
@@ -95,7 +95,7 @@ var setOptionData = function (option, data) {
  * @codestart
  * /**
  *  * @param {{type: String}} params An object with the following options:
- *  *   @option type Specifies the type of order.
+ *  *   @option kind Specifies the kind of order.
  *  *   @option label Retrieves only orders with this label.
  *  *|
  * @codeend
@@ -105,9 +105,9 @@ var setOptionData = function (option, data) {
  * 
  * @param {bit-docs-type-annotate/types/nameExpression} NAME A [bit-docs-type-annotate/types/nameExpression name expression]. Examples:
  *
- * `age` - age is item.
- * `[age]` - age is item, age is optional.
- * `[age=0]` - age defaults to 0.
+ * - `age`: age is item.
+ * - `[age]`: age is item, age is optional.
+ * - `[age=0]`: age defaults to 0.
  * 
  * @param {Markdown} [DESCRIPTION] Markdown content that continues for multiple lines.
  * 

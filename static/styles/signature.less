@@ -1,0 +1,25 @@
+@import "locate://bit-docs-site/styles/variables.less";
+
+/**
+ * @parent bit-docs-js/static
+ * @module bit-docs-js/static/styles/signature.less
+ *
+ * @description Base styles for signature tag.
+ *
+ * @body
+ *
+ * Keep spacing consistent for signature options and/or parameters when the
+ * description text ends in a paragraph that has a bottom margin, or ends in
+ * another element without a default bottom margin (such as an HTML list).
+ *
+ * Uses `>` selectors to scope only those `<ul>`/`<ol>` added by the template.
+ *
+ * Paragraphs have a default bottom margin of 1em, so this collapses with that.
+ */
+.signature {
+  .options, .parameters {
+    &>*>li {
+      margin-bottom: 1em;
+    }
+  }
+}

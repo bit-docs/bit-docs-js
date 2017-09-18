@@ -53,11 +53,16 @@ var path = require("path");
  * HTML for the tags added by this plugin.
  */
 module.exports = function(bitDocs){
+    var pkg = require("./package.json");
+    var dependencies = {};
+    dependencies[pkg.name] = pkg.version;
+
     // register your tags
     bitDocs.register("tags", tags);
     bitDocs.register("processor", processJavaScript);
 
     bitDocs.register("html", {
-        templates: path.join(__dirname, "templates")
+        templates: path.join(__dirname, "templates"),
+        dependencies: dependencies
     });
 };

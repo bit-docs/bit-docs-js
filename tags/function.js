@@ -8,49 +8,23 @@ keyFunction = /(?:([\w\.\$]+)|(["'][^"']+["']))\s*[:=].*function\s?\(([^\)]*)/;
 namedFunction = /\s*function\s+([\w\.\$]+)\s*(~)?\(([^\)]*)/;
 
 /**
- * @module {Object} bit-docs-js/tags/function @function
- * @parent bit-docs-js/tags
+ * @parent bit-docs-js/modules
+ * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/function
  *
- * @description Specifies the comment is for a function. Use 
- * [bit-docs-js/tags/param] to specify the parameters of a function.
- *
- * @signature `@function [NAME] [TITLE]`
- *
- * @codestart javascript
- * /**
- *  * @function lib.Component.prototype.update update
- *  * @parent lib.Component
- *  *|
- * C.p.update = function(){
- *
- * }
- * @codeend
- *
- * @param {String} [NAME] The name of the function. It should be supplied
- * if it cannot be determined from the code block following the comment.
- *
- * @param {String} [TITLE] The title to be used for display purposes.
- *
- * @body
- *
- * ## Code Matching
- *
- * The `@function` type can be inferred from code like the following:
- *
- * @codestart javascript
- * /**
- *  * The foo function exists
- *  *|
- * foo: function(){}
+ * @description Module that implements the [bit-docs-js/tag/function] tag.
  * 
- * /**
- *  * The bar function exists
- *  *|
- * bar = function(){}
- * @codeend
+ * @body
  */
 module.exports = {
 	codeMatch: /function(\s+[\w\.\$]+)?\s*\([^\)]*\)/,
+	/**
+	 * @signature `code(code, scope, docMap)`
+	 *
+	 * @param {String} code The code.
+	 * @param {String} scope The scope.
+	 * @param {bit-docs/types/docMap} docMap The [bit-docs/types/docMap].
+	 * @return {Object} Extracted information about the code.
+	 */
 	code: function (code, scope, docMap) {
 		var parts = code.match(keyFunction);
 
@@ -98,6 +72,14 @@ module.exports = {
 
 		return data;
 	},
+	/**
+	 * @signature `add(line, curData, scope, docMap)`
+	 *
+	 * @param {String} line The line.
+	 * @param {String} curData The data.
+	 * @param {String} scope The scope.
+	 * @param {bit-docs/types/docMap} docMap The [bit-docs/types/docMap].
+	 */
 	add: function (line, curData, scope, docMap) {
 		var data = tnd(line);
 		this.title = data.description;

@@ -6,7 +6,7 @@ var tnd = require("bit-docs-type-annotate").typeNameDescription;
  * @module {bit-docs-process-tags/types/tag} bit-docs-js/tags/module
  *
  * @description Module that implements the [bit-docs-js/tag/module] tag.
- * 
+ *
  * @body
  */
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
 
 		var data = tnd(line);
 		if(!data.name){
-			print("LINE: \n" + line + "\n does not match @typedef [{TYPE}] NAME TITLE");
+			console.log("LINE: \n" + line + "\n does not match @typedef [{TYPE}] NAME TITLE");
 		}
 		this.type = "module";
 		this.title = data.description;

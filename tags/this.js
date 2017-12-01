@@ -49,7 +49,7 @@ var getParent = require("bit-docs-process-tags/get-parent"),
 			// this code is VERY similar to @return and should be shared
 			// get type and description
 			var printError = function(){
-				print("LINE: \n" + line + "\n does not match @this {TYPE} DESCRIPTION");
+				console.log("LINE: \n" + line + "\n does not match @this {TYPE} DESCRIPTION");
 			};
 
 			// start processing

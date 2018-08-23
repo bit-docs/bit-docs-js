@@ -15,7 +15,7 @@ var typeCheckReg = /^\s*@(\w+)/;
  * [bit-docs/types/docObject].
  *
  * @param {bit-docs-js/types/processCodeOptions} options
- * 
+ *
  * Options object that includes the [bit-docs-js/types/codeTagBlock] and any
  * [bit-docs-js/types/codeLine] that immediately followed the
  * [bit-docs-js/types/codeTagBlock].
@@ -45,7 +45,8 @@ module.exports = function(options, callback){
 				scope: newScope || options.scope,
 				docMap: options.docMap,
 				docObject: newDoc || options.docObject || {},
-				tags: options.tags || {}
+				tags: options.tags || {},
+				siteConfig: options.siteConfig || {}
 			}, function(newDoc, newScope){
 				callback(newDoc, newScope);
 			});
@@ -58,7 +59,8 @@ module.exports = function(options, callback){
 			scope: options.scope,
 			docMap: options.docMap,
 			docObject:  {},
-			tags: options.tags || {}
+			tags: options.tags || {},
+			siteConfig: options.siteConfig || {}
 		}, function(newDoc, newScope){
 			callback(newDoc, newScope);
 		});

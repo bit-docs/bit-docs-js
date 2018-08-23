@@ -29,7 +29,8 @@ module.exports = function(filename, source, docMap, siteConfig, addDocObjectToDo
                 docMap: docMap,
                 scope: scope,
                 tags: siteConfig.tags,
-                docObject: {src: {line: comment.line, codeLine: comment.codeLine, path: filename}}
+                docObject: {src: {line: comment.line, codeLine: comment.codeLine, path: filename}},
+				siteConfig: siteConfig
             }, function(docObject, newScope){
                 if(docObject) {
                     addDocObjectToDocMap(docObject);

@@ -440,5 +440,29 @@ describe("bit-docs-js", function(){
 				done();
 			});
 		});
+
+		it("processJavaScript provides filename and line if available to tags", function(done){
+			var count = 0;
+			tags.siteconfigtest = {
+				add: function(line, curData, scope, docMap, defaultWriteProp, options){
+
+					assert.ok(options.siteConfig,"siteConfig exists");
+				}
+			};
+
+			fs.readFile(path.join(__dirname,"test","should-get-siteconfig.js"), function(err, data){
+				if(err) {
+					return done(err);
+				}
+
+				var docMap = {};
+				processJavaScript("utils/should-get-siteconfig.js", ""+data,docMap, {tags: tags},makeAddToDocMap(docMap));
+				done();
+			});
+
+		});
+
+
+
 	});
 });
